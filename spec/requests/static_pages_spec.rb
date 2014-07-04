@@ -10,6 +10,9 @@ require 'spec_helper'
 #   end
 # end
 
+# TEST DESCRITPTION
+# Pass: The home page does contain the phrase 'Sample App'
+
 describe "Static pages" do
 	describe "Home page" do
 		it "should have the content 'Sample App'" do
@@ -19,6 +22,9 @@ describe "Static pages" do
 	end	
 end		
 
+# TEST DESCRITPTION
+# Pass: The Help page does contain the phrase 'Help'
+
 describe "Static pages" do
 	describe "Help page" do
 		it "should have the content 'Help" do
@@ -27,3 +33,6 @@ describe "Static pages" do
 		end
 	end
 end
+
+# TEST DESCRITPTION
+# Pass: The About page does contain the phrase 'About Us'
