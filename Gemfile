@@ -12,7 +12,7 @@ gem 'jbuilder', '1.0.2'
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '3.0.1'
-  gem 'guard-rspec'
+  gem 'guard-rspec', '4.2.10'
   gem 'spring-commands-rspec'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
