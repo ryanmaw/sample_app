@@ -14,7 +14,7 @@ group :development, :test do
   gem 'rspec-rails', '3.0.1'
   gem 'guard-rspec', '4.2.10'
   gem 'spring-commands-rspec'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'rb-fsevent', :require => false
 end
 
 group :test do
