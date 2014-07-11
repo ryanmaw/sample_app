@@ -1,29 +1,31 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
 
 gem 'rails', '4.1.2'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
+gem 'sass-rails', '4.0.3'
+gem 'uglifier', '2.1.1'
+gem 'coffee-rails', '4.0.1'
+gem 'jquery-rails', '3.0.4'
+gem 'turbolinks', '1.1.1'
+gem 'jbuilder', '1.0.2'
 
 group :development, :test do
-	gem 'sqlite3'
-	gem 'rspec-rails'
-	gem 'capybara'
+  gem 'pg', '0.15.1'
+  gem 'rspec-rails', '3.0.1'
+  gem 'guard-rspec', '4.2.10'
+  gem 'spring-commands-rspec'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
-group :development do
-	gem 'spring'
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.4.1'
 end
 
 group :doc do
-	gem 'sdoc', '~> 0.4.0'
+  gem 'sdoc', '0.3.20', require: false
 end
 
 group :production do
-	gem 'pg'
-	gem 'rails_12factor'
+  gem 'rails_12factor', '0.0.2'
 end
