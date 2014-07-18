@@ -1,5 +1,6 @@
 Git Chapters
-# This folder allows for dummy commits at key points in the chapter.  When a section is completed list it in here and commit.  
+# This folder allows for dummy commits at key points in the chapter.  When a section is started list it in here and commit.  
 
 3.2
 3.4
+4.1 Motivation Started
