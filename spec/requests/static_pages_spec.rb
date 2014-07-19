@@ -14,66 +14,31 @@ require 'spec_helper'
 describe "Static pages" do
 
 	describe "Home page" do
-		# TEST DESCRITPTION
-		# Pass: The home page does contain the phrase 'Sample App'
-		it "should have the content 'Sample App'" do
-			visit root_path
-			expect(page).to have_content('Sample App')
-		end
-		# TEST DESCRIPTION
-		# Pass: <Title> must contain base title
-		it "should have the base title" do
-			visit root_path
-			expect(page).to have_title("Ruby on Rails Tutorial Sample App")
-		end
-		# TEST DESCRIPTION
-		# Pass: <title> must not contain "| home"
-		it "should not have a custom page title" do
-			visit root_path
-			expect(page).not_to have_title('| Home')
-		end
+		before{ visit root_path }
+		subject { page }
+		it { should have_content('Sample App')}
+		it { should have_title("Ruby on Rails Tutorial Sample App") }
+		it { should_not have_title('| Home') }
 	end	
 
 	describe "Help page" do	
-		# TEST DESCRITPTION
-		# Pass: The Help page does contain the phrase 'Help'
-		it "should have the content 'Help" do
-			visit help_path
-			expect(page).to have_content('Help')
-		end
-		# TEST DESCRITPTION
-		# Pass: <title div> must contain 'Help'
-		it "should have the right title 'Help'" do
-			visit help_path
-			expect(page).to have_title("Help")
-		end
+		before { visit help_path }
+		subject {page}
+		it { should have_content('Help') }
+		it { should have_title("Help")}
 	end
 
 	describe "About page" do
-		# TEST DESCRITPTION
-		# Pass: The About page does contain the phrase 'About Us'
-		it "should have the content 'About Us'" do
-			visit about_path
-			expect(page).to have_content('About Us')
-		end
-		# TEST DESCRITPTION
-		# Pass: <title div> must contain 'About Us'
-		it "should have the right title 'About Us'" do
-			visit about_path
-			expect(page).to have_title("About")
-		end
+		before { visit about_path }
+		subject { page }
+		it { should have_content('About Us') }
+		it { should have_title("About") }
 	end
 	describe "Contact Page" do
-		# TEST DESCIPTION
-		# Pass:
-		it "should have the content 'Contact'" do
-			visit contact_path
-			expect(page).to have_content('Contact')
-		end
-		it "should have the title 'Contact'" do
-			visit contact_path
-			expect(page).to have_title('Contact')
-		end
+		before { visit contact_path }
+		subject { page }
+		it { should have_content('Contact') }
+		it { should have_title("Contact") }
 	end
 end
 
