@@ -17,3 +17,6 @@
 
 #ignore database.yml for security
 /config/database.yml
+
+#ignore secrets.yml
+/config/secrets.yml
