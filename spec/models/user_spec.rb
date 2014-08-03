@@ -17,6 +17,7 @@ describe User do
     it { should respond_to(:authenticate) }
 	it { should be_valid }
 
+ 	#### User Email Tests ####
 	describe "when name is not present" do
 		before { @user.name = " " }
 		it { should_not be_valid }
@@ -27,10 +28,23 @@ describe User do
 		it { should_not be_valid }
 	end
 
+	describe "when email has mixed case" do
+		let(:mixed_case_email) {"FooBar@Gmail.coM"}
+		it "should be saved as all lower case" do
+			# Create user with mixed case
+			@user.email = mixed_case_email
+			@user.save
+			# Reload and verify it's all lower case
+			expect(@user.reload.email).to eq mixed_case_email.downcase
+		end
+	end
+
+	#### User Name Tests ####
 	describe "when name is to long" do
 		before { @user.name = 'a' * 51 }
 		it { should_not be_valid }
 	end
+	#### User Password Tests ####
 	describe "when password is not present" do
 	  before do
 	    @user = User.new(name: "Example User", email: "user@example.com",
