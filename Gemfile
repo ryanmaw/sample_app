@@ -10,6 +10,7 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'pg', '0.15.1'
 gem 'bcrypt', '3.1.7'
+gem 'bootstrap_form', '2.1.1'
 
 group :development, :test do
   gem 'rspec-rails', '3.0.1'
