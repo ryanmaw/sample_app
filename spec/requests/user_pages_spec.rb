@@ -24,7 +24,7 @@ describe "User Pages" do
 
 		describe "with invalid information" do
 			it "should not create user" do
-				expect { click_button submit }.not_to change(User,:count)
+				expect { click_button submit }.not_to change(User, :count)
 			end
 		end
 
@@ -37,7 +37,7 @@ describe "User Pages" do
 			end
 
 			it "should create a user" do
-				expect { click_button submit }.to change(User,:count).by(1)
+				expect { click_button submit }.to change(User, :count).by(1)
 			end
 
 		end
