@@ -1,0 +1,41 @@
+8.2.2
+
+1.  Define current_user method to find the user in the database corresponding to the session id.
+	- Allows us to determin if a user is logged in
+	- Allow for <%= current_user.name %>
+	- Allow redirect to current_user	
+
+	To do this we will need to find the current user. The "Find" method raises an error if the user is not found.
+	But sometimes the users won't be logged in.  In that case we have to use a "find_by" method. 
+
+	User.find_by(id: session[:user_id])
+
+	Rather than raising an exception, this method return nil (indicating no such user) if the id is invalid.
+
+	So our method would look like this
+
+	def
+		User.find_by(id: session[:user_id])
+	end
+
+	This would hit the database multiple times if the current_user appeared multiple times on a page.  
+	So lets store it in an instance variable.
+
+	if @current_user.nil?
+		@current_user = User.find_by(id: session[:user_id])
+	else
+		@current_user
+	end
+
+	Using the or || operator 
+
+	@current_user = @current_user || User.find_by(id: session[:user_id])
+
+	User = nil or id
+
+	A User object is true in a boolean context.  The call to find_by only gets executed if @current_user hasn't been assigned.
+
+	This is how we'd write it in ruby...
+
+	@current_user ||= User.find_by(id: session[:user_id])
+
