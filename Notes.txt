@@ -39,3 +39,45 @@
 
 	@current_user ||= User.find_by(id: session[:user_id])
 
+8.2.3
+
+1. Changing layout links based on login status
+	- Add link for logout
+	- Add link for user settings
+	- Add link for listing all users
+	- Add link for profile page
+
+	Change layout based on if else logged in statement.
+
+	<% if logged_in? %>
+		# links for logged in user
+	<% else %>
+		# links for logged out user
+
+	We need a logged_in? boolean method for this to work.
+
+	A user is logged in if there is a current user in the session.  If current_user is not nil we have a logged in user.
+
+	nil = false
+
+	def logged_in?
+		!current_user.nil?
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
