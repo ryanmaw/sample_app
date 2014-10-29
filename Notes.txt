@@ -64,6 +64,9 @@
 		!current_user.nil?
 	end
 
+8.2.4
+
+1. Testing Layout Changes
 
 
 
