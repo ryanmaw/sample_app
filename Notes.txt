@@ -87,6 +87,97 @@
 		test/fixtures/users.yml
 
 		
+Back to correct rails book edition!!!!
+
+8.2.1
+
+1. Remember me
+	
+	Signin functions themselcer will end need to be available in both controllers and views. 
+	SessionsHelper is the key to this cross MVC functionality.
+	These helpers are automatically included in rails views.  
+
+	By default, all the helpers are available in the views but not in the controllers.  We need the methods from the Sessions
+	helper in both places.  So we will include it
+
+	/application_controller 
+
+	include SessionsHelper
+
+	We will use a remember token equal to the user's id.
+
+	session[:remember_token] = user.id
+
+	This session object makes the user id available from page to page by storing it in a cookie that expires upon
+	the browser closing.  On each page we can call
+
+	User.find(session[:remember_token])
+
+	to retrieve the user.  Becuase of the way Rails handles sessions, this process is secure; if a malicious user tries to spoof the user id, Rails will detect a mismatch based on a special session id generated for each session.
+
+	Rails generates a special session id to make sure the session isn't hijacked and a user id isn't spoofed. 
+
+
+2. Persistant Sessions
+	We want the session to last between browser sessions and survive after the browser is closed.
+
+	To do this we will generate a unique secure remember token for each user and store it as a perminant cookie.
+
+	The remember token needs to be associated with a user and stored for future use, so we'll add it as a attribute to the User model. 
+
+	Users
+		- integer id 
+		- string name
+		- string email
+		- string password_digest
+		- string remember_token
+		- datetime created_at
+		- datetime updated_at
+
+
+	Add a response test to the User model
+	Add migration to database
+		rails generate migration add_remember_token_to_users
+
+	Navigate to the migration and add a column and index to the database
+
+		add_column :users, :remember_token, :string
+		add_index :users, :remember_token
+
+	Migrate the database
+		bundle exec rake db:migrate
+
+	Prep the database
+		bundle exec rake db:test:prepare
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
