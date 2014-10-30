@@ -64,10 +64,29 @@
 		!current_user.nil?
 	end
 
-8.2.4
+8.2.4 Password Fixture
 
 1. Testing Layout Changes
+	1. Visit Login Path
+	2. Post valid information to the path
+	3. Verify that the login link disappears
+	4. Verify that a logout link appears
+	5. Verify that a profile link appears
 
+	To do this we need a test user already in the database. Rails does this with "fixtures".
+	Fixture data gets loaded into the test database. 
+
+	We need one user with a valid username and email and password.  
+
+	The password digest is created useing bcrypt (via has_secure_password) so we'll need to create the fixture password using 
+	the same method. 
+
+	The rails secure password source code has a cost: cost variable.  This determines the strength of the hash.  For a fixture we want things to be as fast as possible.  MIN_COST 
+
+	I. Creating a fixture
+		test/fixtures/users.yml
+
+		
 
 
 
