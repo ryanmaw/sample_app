@@ -22,5 +22,8 @@ class SessionsController < ApplicationController
 
 
 	def destroy
+		sign_out
+		redirect_to root_url # redirect to home page
+
 	end
 end

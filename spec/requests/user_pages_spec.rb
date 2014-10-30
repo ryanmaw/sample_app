@@ -54,6 +54,7 @@ describe "User Pages" do
 
 			  it { should have_title(user.name) }
 			  it { should have_selector('div.alert.alert-success', text: 'succesfully registered') }
+			  it { should have_link('Sign Out') }
 			end
 
 		end

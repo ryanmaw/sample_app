@@ -210,10 +210,39 @@ Back to correct rails book edition!!!!
 
 1. Change the layout links based on wether or not a user is signed in or not.
 	
+	At this point all tests pass but it isn't really working yet.  Out test user was already saved and therefore doesn't yet have a remember_token.  We need to resave all the users in the database so that they will aquire remember_tokens.
+
+	Do this in the rails console
+
+	# check for token
+	User.first.remeber_token
+	=> nil
+
+	# loop through all users and resave them
+	# validates: false skips the validations...
+	# Save requires a password a confirmation so we must skip the validations. 
+	User.all.each { |user| user.save(validates: false) }
 
 
+8.2.5 Signin upon signup
+
+	- We want users to automatically be signed in upon sign up.
 
 
+8.2.6 Signing out of dis bitch
+
+	We'll use the RESTful destroy action to sign out of the application.
+	We'll delete a session to sign a user out.
+
+	To test signout we'll click the signout button and then look for a signin button to appear. 
+
+8.3.3 RSpec Custom Matchers
+
+	RSpec::Matchers.define :have_error_message do |message|
+	  match do |page|
+	    page.should have_selector('div.alert.alert-error', text: message)
+	  end
+	end
 
 
 
