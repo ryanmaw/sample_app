@@ -150,7 +150,32 @@ Back to correct rails book edition!!!!
 	Prep the database
 		bundle exec rake db:test:prepare
 
-	
+3. What Should We Use As The Remember Token
+	Any large random string should work just fine. 
+	In principale, since th user passwords are securly encrypted, we could use each user's password_hash attribute, but it seems like a terrible idea to unnecessarily espose our users' passwords to attackers.  
+
+	Lets do something more secure...
+
+	We'll use the urlsafe_base64 method from the ruby standard library to generate a URI/L string.
+	This is a methode from the SecureRandom module within Ruby.
+
+	returns a length 16 string.  It's a very small probability that two strings are generated as the same. 
+	This could be a source of odd behavior but it'd be really rare. 
+
+	We'll create a remember token useing a callback.  We'll use a before_save callback to create the remeber_token just before the user is saved.  
+
+	We could do a before_create callback but this would leave it so that any hijacked sessions would never expire.  Fuck that!
+
+	When we use before_save callbacks, the token changes every time the user updates information.  
+
+4. Testing the remember_token
+
+	- Create a test user
+	- Check the remember_token isn't empty
+
+	user_spec.rb
+
+	Then we add the functionality to the user.rb model
 
 
 
