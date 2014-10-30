@@ -206,6 +206,11 @@ Back to correct rails book edition!!!!
 
 
 
+8.2.4 Changing the Layout Links
+
+1. Change the layout links based on wether or not a user is signed in or not.
+	
+
 
 
 

@@ -32,11 +32,11 @@ module SessionsHelper
 	# This calls the current user method the first time (database access) after that the user is remembered and return
 	# Basically ||= is a fancy if statement
 	def current_user
-		@current_user ||= User.find_by_remeber_token(cookies[:remember_token])
+		@current_user ||= User.find_by_remember_token(cookies[:remember_token])
 	end
 
 	def signed_in?
-		
+		!current_user.nil?
 	end
 
 
