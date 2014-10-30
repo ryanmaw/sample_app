@@ -178,6 +178,31 @@ Back to correct rails book edition!!!!
 	Then we add the functionality to the user.rb model
 
 
+8.2.2: A Working Signin Method
+
+1. Signin Method
+	- Place cookie in browser
+	- Us token to find the user record in the database when the user moves from page to page
+
+	The Cookie Method
+
+		Cookies can be used as if they are a hash.
+		Each element in the cookie is itself a hash of two elements.
+
+		Cookie = Value, Expires Date
+
+		cookies[:remember_token] = { value: user.remeber_token, expires: 20.years.from.now.utc }
+
+		20.years.from.now.utc is so commonlly used that it has it's own method within Ruby, Permanent.
+
+		So we can just write cookies.permanent[:remember_token] = user.remember_token
+
+		User.find_by_remember_token(cookies[:remember_token]) to access from each page.
+
+		Cookies aren't really a hash buy Rails lets them behave as one. Thanks Rails!
+
+
+8.2.3
 
 
 

@@ -13,14 +13,14 @@ class User < ActiveRecord::Base
 
 	# Class Methods
 
-	def User.digest(string)
+	# def User.digest(string)
 
-		# IF Active Model is min_cost use min_cost ELSE use cost
-		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+	# 	# IF Active Model is min_cost use min_cost ELSE use cost
+	# 	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
 
-		# Create the password
-		BCrypt::Password.create(string, cost: cost)
-	end
+	# 	# Create the password
+	# 	BCrypt::Password.create(string, cost: cost)
+	# end
 
 	private
 

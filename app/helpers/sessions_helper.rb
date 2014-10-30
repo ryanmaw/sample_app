@@ -16,17 +16,27 @@ module SessionsHelper
 =end
 
 	def sign_in(user)
-		session[:user_id] = user.id
+		cookies.permanent[:remember_token] = user.remember_token
+		self.current_user = user
 	end
 
 	# 8.2.2 in notes.txt
 
+
+	# self.current_user = is the same as current_user=().  This is just a fancy assignment methode
+	def current_user=(user)
+		@current_user = user
+	end
+
+	# Finding the current user method
+	# This calls the current user method the first time (database access) after that the user is remembered and return
+	# Basically ||= is a fancy if statement
 	def current_user
-		@current_user ||= User.find_by(id: session[:user_id])
+		@current_user ||= User.find_by_remeber_token(cookies[:remember_token])
 	end
 
 	def signed_in?
-		!current_user.nil?
+		
 	end
 
 
