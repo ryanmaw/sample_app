@@ -1,0 +1,10 @@
+9.1.1 Editing User Information Form 
+
+	Web browsers can't natively send put requests so the source html code includes a hiddin input field. 
+
+	How does rails now to use a Post request for new users and a Put request for editing user data?
+	- Active Record has a new_record? method that tells it when a new record is added to the database
+
+	Post for new 
+	Put for edit
+

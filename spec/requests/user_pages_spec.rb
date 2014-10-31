@@ -49,15 +49,35 @@ describe "User Pages" do
 			end
 
 			describe "after saving the user" do
-			  before { click_button submit }
-			  let(:user) { User.find_by(email: 'user@example.com') }
+				before { click_button submit }
+				let(:user) { User.find_by(email: 'user@example.com') }
 
-			  it { should have_title(user.name) }
-			  it { should have_selector('div.alert.alert-success', text: 'succesfully registered') }
-			  it { should have_link('Sign Out') }
+				it { should have_title(user.name) }
+				it { should have_selector('div.alert.alert-success', text: 'succesfully registered') }
+				it { should have_link('Sign Out') }
 			end
 
 		end
+	end
+
+	describe "edit" do
+		#Factory girl a user
+		let(:user) { FactoryGirl.create(:user) }
+		before { visit edit_user_path(user) }
+
+		describe "page" do
+			it { should have_title("Edit User") }
+			#it { should have_link("change", href: 'http://gravatar.com/emails') }
+			it { should have_selector('h1', text: "Update Your Profile") }
+		end
+
+		describe "with invalid information" do
+			before { click_button 'Save Changes' }
+			it { should have_content('Error') }
+		end
+
+
+
 	end
 
 
