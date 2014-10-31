@@ -73,7 +73,7 @@ describe "User Pages" do
 
 		describe "with invalid information" do
 			before { click_button 'Save Changes' }
-			it { should have_content('Error') }
+			it { should have_content('Wow there') }
 		end
 
 

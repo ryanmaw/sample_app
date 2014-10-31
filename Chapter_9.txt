@@ -8,3 +8,9 @@
 	Post for new 
 	Put for edit
 
+9.1.2 Unsuccessful Edits
+
+	- Add an error message test
+	- Get the error message test to pass
+	- Create an update action that uses update_attributes
+	
