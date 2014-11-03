@@ -1,6 +1,6 @@
 9.1.1 Editing User Information Form 
 
-	Web browsers can't natively send put requests so the source html code includes a hiddin input field. 
+	Web browsers can't natively send put requests so the source html code includes a hidden input field. 
 
 	How does rails now to use a Post request for new users and a Put request for editing user data?
 	- Active Record has a new_record? method that tells it when a new record is added to the database
@@ -16,4 +16,15 @@
 
 9.1.3 Successful Edits
 
-	
+9.2 Authorization
+
+	Authentication - Is this person logged in
+	Authorization  - What level of clearance does this person have
+
+	Currently we have large security flaw or 3.  We can access the edit pages even when not logged in.
+	We can also access any users edit page. 
+
+1. Requiring signed-in users
+
+	Since the security restrictions are the same for edit and update, we'll handle them in a single RSpec describe block.
+	Starting with the sign in requirement, our initial tests verify that non-signed-in users attempting to access either action are simply sent to the sign-in page.   

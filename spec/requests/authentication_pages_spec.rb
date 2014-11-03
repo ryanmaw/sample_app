@@ -45,7 +45,37 @@ describe "Authentication" do
 			end
 		end
 
-	end
+		describe "Authorization" do
+			describe "for non-signed in users" do
+				let(:user) { FactoryGirl.create(:user) }
 
+				describe "in the Users Controller" do
+
+					describe "visiting the edit page" do
+						before { visit edit_user_path(user) }
+						it { should have_title('Sign In') }
+					end
+
+					describe "submitting to the update action" do
+
+						# Capybara's Visit method can be replicated by using the appropriate HTTP request directly.
+						# This is another way to access a controller action 
+						before { put user_path(user) }
+						#This is necessary because there is no way for a browser to visit the update action directly—it 
+						#can only get there indirectly by submitting the edit form—so Capybara can’t do it either. 
+						#But visiting the edit page only tests the authorization for the edit action, not for update. 
+						#As a result, the only way to test the proper authorization for the update action itself is 
+						#to issue a direct request.
+						#before { visit user_path(user ) }
+
+						# When we issue an direct HTTP call then we get access to the server response.  
+						specify { response.should redirect_to(signin_path) }
+					end
+				end
+			end
+		end
+
+
+	end
 end
 

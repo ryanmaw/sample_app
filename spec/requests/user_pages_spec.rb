@@ -8,7 +8,7 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe "User Pages" do
+describe "User Pages " do
 	subject { page }
 
 	describe "signup page" do
@@ -60,23 +60,27 @@ describe "User Pages" do
 		end
 	end
 
-	describe "edit" do
+	describe "-> Edit" do
 		#Factory girl a user
 		let(:user) { FactoryGirl.create(:user) }
-		before { visit edit_user_path(user) }
 
-		describe "page" do
-			it { should have_title("Edit User") }
-			#it { should have_link("change", href: 'http://gravatar.com/emails') }
-			it { should have_selector('h1', text: "Update Your Profile") }
+		before do
+		  sign_in user
+		  visit edit_user_path(user)
 		end
 
-		describe "with invalid information" do
+		describe "-> page" do
+			it { should have_selector('h1',    text: "Update Your Profile") }
+	        it { should have_title("Edit User Information") }
+		    #it { should have_link('change', href: 'http://gravatar.com/emails') }
+		end
+
+		describe "-> with invalid information" do
 			before { click_button 'Save Changes' }
 			it { should have_content('Wow there') }
 		end
 
-		describe "with Valid Information" do
+		describe "->with Valid Information" do
 			let(:new_name) { "New Name" }
 			let(:new_email) { "new@example.com" }
 			before do
