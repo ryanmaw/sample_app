@@ -48,14 +48,14 @@
   # This allows the authentication to take place before
 
   def signed_in_user 
-    redirect_to signin_url, warning: "Please Sign In To Update Your Profile" unless signed_in?
+    # redirect_to signin_url, warning: "Please Sign In To Update Your Profile" unless signed_in?
 
     # The code below == the code above.
 
-    # unless signed_in?
-    #   flash[:notice] = "Please sign in."
-    #   redirect_to signin_url
-    # end
+    unless signed_in?
+      flash[:warning] = "Please sign in."
+      redirect_to signin_url
+    end
   end
 
 end

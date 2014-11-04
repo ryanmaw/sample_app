@@ -27,4 +27,5 @@
 1. Requiring signed-in users
 
 	Since the security restrictions are the same for edit and update, we'll handle them in a single RSpec describe block.
-	Starting with the sign in requirement, our initial tests verify that non-signed-in users attempting to access either action are simply sent to the sign-in page.   
+	Starting with the sign in requirement, our initial tests verify that non-signed-in users attempting to access either action are simply sent to the sign-in page.  
+ 
