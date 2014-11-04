@@ -74,6 +74,21 @@ describe "Authentication " do
 				end
 			end
 		end
+
+		describe "-> As wrong user " do
+			# The :user tries to access the :wrong_user page path and should get redirected to the root.
+
+			# Create factory right user
+			let(:user) { FactoryGirl.create(:user) }
+			let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@email.com") }
+			before { sign_in(user) }
+			# Create factory wrong user
+			# Signin wrong user
+			describe "-> Visiting User#Edit page" do
+				before { visit edit_user_path(wrong_user) }
+				it { should_not have_title(full_title("Edit User Information")) }				
+			end
+		end
 	end
 end
 

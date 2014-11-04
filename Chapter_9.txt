@@ -29,3 +29,13 @@
 	Since the security restrictions are the same for edit and update, we'll handle them in a single RSpec describe block.
 	Starting with the sign in requirement, our initial tests verify that non-signed-in users attempting to access either action are simply sent to the sign-in page.  
  
+ 9.2.2 Requiring the right User
+
+ 	We want a user to only be able to edit their own information.  As it stands now any user can edit any other users information.
+
+ 	We'll right a test where the wrong user tries to edit another users information.  They edit and update, and be redirected to the root.
+
+ 	Build the test
+
+ 	Create another before_filter for the correct user.
+ 	The filter will require a new correct_user method
