@@ -88,6 +88,14 @@ describe "Authentication " do
 				before { visit edit_user_path(wrong_user) }
 				it { should_not have_title(full_title("Edit User Information")) }				
 			end
+
+			# submit a put request to User#edit and check that we redirect to the root_url
+			describe "-> submitting a PUT request to the User#update action" do
+				before { put user_path(wrong_user) }
+				specify { response.should redirect_to(root_url) }
+			end
+
+
 		end
 	end
 end
