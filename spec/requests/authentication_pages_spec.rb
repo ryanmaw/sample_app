@@ -54,7 +54,7 @@ describe "Authentication " do
 				describe "-> visiting the edit page" do
 					before { visit edit_user_path(user) }
 					it { should have_title('Sign In') }
-					it { should have_selector("alert", "Please sign in.")}
+					it { should have_selector('div.alert', text: "Please sign in.") }
 				end
 
 				describe "-> submitting to the update action" do
