@@ -39,3 +39,7 @@
 
  	Create another before_filter for the correct user.
  	The filter will require a new correct_user method
+
+9.2.3 Friendly Redirecting
+
+	We want users to be redirect to the original page they were trying to access after they login if it is required.

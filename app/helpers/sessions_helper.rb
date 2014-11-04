@@ -20,10 +20,7 @@ module SessionsHelper
 		self.current_user = user
 	end
 
-	# 8.2.2 in notes.txt
-
-
-	# self.current_user = is the same as current_user=().  This is just a fancy assignment methode
+	# self.current_user = is the same as current_user=().  This is just a fancy assignment method
 	def current_user=(user)
 		@current_user = user
 	end
@@ -49,6 +46,23 @@ module SessionsHelper
 		self.current_user = nil
 		cookies.delete(:remember_token)
 	end
+
+
+	# redirect back to or method with default args
+	# the default is the root url
+
+	def redirect_back_or(default)
+		# redirect to the session[:return_to] || default
+		redirect_to(session[:return_to] || default)
+		# delete session cookie, delete is a method in the session class. Uses parentheses 
+		session.delete(:return_to)
+
+	end
+
+	def store_location
+		session[:return_to] = request.url
+	end
+
 end
 
 

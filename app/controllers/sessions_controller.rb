@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 	    sign_in user
 
 	    # Rails automatically converts this to the route for the users profile page "user_path(user)"
-	    redirect_to user
+	    redirect_back_or user
 
 	  else
 	    # Create an error message and re-render the signin form.

@@ -49,6 +49,25 @@ describe "Authentication " do
 		describe "-> for non-signed in users " do
 			let(:user) { FactoryGirl.create(:user) }
 
+
+			# To test for such “friendly forwarding”, we first visit the user edit page, which redirects to the signin page.
+			# We then enter valid signin information and click the “Sign in” button. 
+			# The resulting page, which by default is the user’s profile, should in this case be the “Edit user” page.
+
+			describe "-> Visiting a Protected Page " do
+				before do
+					visit edit_user_path(user)
+					fill_in("Email",			with: user.email)
+					fill_in("Password",		with: user.password)
+					click_button "Sign In"
+				end
+				describe "-> After Signing In" do
+					it "should render the edit page" do
+						page.should have_title("Edit User Information")
+					end
+				end
+			end
+
 			describe "-> in the Users Controller " do
 
 				describe "-> visiting the edit page" do
