@@ -43,3 +43,43 @@
 9.2.3 Friendly Redirecting
 
 	We want users to be redirect to the original page they were trying to access after they login if it is required.
+
+9.3.2 Sample Users
+
+	Lets add some sample users.
+	We'll use Ruby and Rake to generate these new users instead of visiting the sign up page a billion times or using the console.
+
+	- We'll use the 'Faker' gem to manage this. 
+
+	Next, we'll add a Rake task to creat the sample users. Rake tasks live in the live in the "lib/taks" directory.
+	They are defined using namespaces(in this case :db).
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
