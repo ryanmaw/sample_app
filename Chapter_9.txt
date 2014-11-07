@@ -54,7 +54,10 @@
 	Next, we'll add a Rake task to creat the sample users. Rake tasks live in the live in the "lib/taks" directory.
 	They are defined using namespaces(in this case :db).
 
-	
+9.3.3 Adding Pagination For User Index
+
+	Gem 'bootstap-will_paginate'
+	Gem "will paginate"
 
 
 

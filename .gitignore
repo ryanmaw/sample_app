@@ -20,3 +20,6 @@
 
 #ignore secrets.yml
 /config/secrets.yml
+
+#ignore keys
+/keyboard_shortcuts.txt

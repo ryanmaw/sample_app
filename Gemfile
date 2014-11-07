@@ -12,6 +12,8 @@ gem 'pg', '0.15.1'
 gem 'bcrypt', '3.1.7'
 gem 'bootstrap_form', '2.1.1'
 gem 'faker', '1.4.3'
+gem 'will_paginate', '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 group :development, :test do
   gem 'rspec-rails', '3.0.1'
