@@ -1,5 +1,5 @@
  class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit , :update]
+  before_filter :signed_in_user, only: [:index ,:edit , :update]
   before_filter :correct_user, only: [:edit, :update]
 
   def new
@@ -19,6 +19,7 @@
   	end
 
   end
+
   def show
     @user = User.find(params[:id])
   end
@@ -39,8 +40,17 @@
       render 'edit'
     end
   end
+  def index
+    @users = User.all
+  end
+
+
+
 
   private 
+
+
+
   def user_params
   	params.require(:user).permit( :name, :email, :password, :password_confirmation)
   end

@@ -101,6 +101,32 @@ describe "User Pages " do
 
 	end
 
+	describe "-> Index " do
+		# create three users
+		# sign in one
+		# visit page
+		before do 
+			sign_in FactoryGirl.create(:user)
+			FactoryGirl.create(:user, name: "Test User 1", email:"tu1@gmail.com")
+			FactoryGirl.create(:user, name: "Test User 2", email:"tu2@yahoo.com")
+			visit users_path
+		end
+
+		# describe page
+		# should have correct title
+		# should have correct h1 
+		# should have a li tag for each user name
+		it { should have_title("All Users") }
+		it { should have_selector("h1", text: "All Users") }
+
+		it "should list all users" do
+			User.all.each do|user|
+				page.should have_selector("li", text: user.name)
+			end
+		end
+
+	end
+
 
 
 end
