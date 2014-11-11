@@ -131,6 +131,13 @@
 
 	4.  Fix a security whole or two.
 
+		- We need better control on access to the destroy action.
+			- Users can still delete each other at this point.  They just can't see a link to delete.
+
+		1. Add a test to describe regular users issuing a delete request.  
+
+			2.  Add a before_filter to limit access to the destroy function to admin users only.
+
 
 
 
