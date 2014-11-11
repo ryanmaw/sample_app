@@ -18,6 +18,7 @@ describe User do
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:remember_token) }
     it { should respond_to(:authenticate) }
+    it { should respond_to(:admin) }
 	it { should be_valid }
 
  	#### User Email Tests ####
@@ -127,6 +128,13 @@ describe User do
 		specify { expect(@user.remember_token).to_not be_blank }
 	end
 
+	describe "User's Admin Attribute set to true" do
+		before do
+			@user.save!
+			@user.toggle!(:admin)
+		end
+		it { should be_admin }
+	end
 
 
 end

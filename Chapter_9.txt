@@ -51,13 +51,86 @@
 
 	- We'll use the 'Faker' gem to manage this. 
 
-	Next, we'll add a Rake task to creat the sample users. Rake tasks live in the live in the "lib/taks" directory.
+	Next, we'll add a Rake task to create the sample users. Rake tasks live in the live in the "lib/task" directory.
 	They are defined using namespaces(in this case :db).
 
 9.3.3 Adding Pagination For User Index
 
 	Gem 'bootstap-will_paginate'
 	Gem "will paginate"
+
+9.4.1 Admin Users
+
+	Goal:
+
+	1. Add admin attribute to user
+
+	Process:
+
+	1. Add a test for the admin attribute.  The test should test for the response of the admin attribute.  
+	2. Add a set of tests for users with the admin att set to true
+		- Save a user
+		- toggle their admin status
+		- check that admin? returns true
+
+	3. Generate a new attribute using a migration
+
+		"rails generate migration add_admin_to_user admin:boolean"
+
+		This adddes the admin column to the users table.
+		Here we should not that the columns contents for each user in the data table and each new user is default to nil which is false. 
+		To add clearity we should add a default parameter to the migration specifying the default behavior in to explicitly be false like so.
+
+		add_column :users, :admin, :boolean, default: false
+
+	4. Migrate the development database and prepare the test database
+
+		rake db:migrate
+		rake db:test:prepare (This is now maintained by the test helper within rails! yay!)
+
+	*  Our tests should now be passing *
+
+	5. Lets update the sample data to make the first user an admin by default.
+
+		- Remember that when we update the sample data we must reset, populate, and prepare the database (prepare is automatic guy)
+
+	* Notes about attr_accesible
+
+		attr_accessible atts can be assigned through mass assignment. We don't want admin to be available to that obviously.  
+
+		Because it's not an attr_accessible we can't initialize it with a hash like admin: true.  So we have to use they toggle.
+
+		This avoid someone running a request like this. put /users/17?admin=1 and setting themselves to admin.
+
+
+9.4.2 The Destroy Action for deleting users.
+
+	1. Add a delete link for each user on the index page.
+
+		1. Allow factory to create admin users.
+
+			factory :admin do
+				admin true
+			end
+
+			This allows us to use the code FactoryGirl.create(:admin) to create an admin user for tests.
+
+	2. Write Tests for non - admin users. 
+
+		- What are we describing?  A Users page's delete links 
+		- What are we testing
+			- It has delete links for all users
+			- No delete link for admin users
+			- Admin can click the delete link and change the users count by 1 (delete a user)
+
+	3. Create Destroy button next to each user in the users page view.
+
+		This is tricky.  Web browsers don't like DELETE requests.  So we have to fake it with javascript.  This won't work on browsers that block java.  
+
+		We are adding a method that controls.
+
+	4.  Fix a security whole or two.
+
 
 
 
