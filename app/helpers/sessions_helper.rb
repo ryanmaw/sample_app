@@ -38,6 +38,7 @@ module SessionsHelper
 	
 	def signed_in?
 		!current_user.nil?
+		# True if signed in
 	end
 
 	def sign_out

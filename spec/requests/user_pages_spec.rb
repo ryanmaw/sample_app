@@ -107,7 +107,7 @@ describe "User Pages " do
 		# visit page
 		let(:user) { FactoryGirl.create(:user) }
 
-		before(:each) do
+		before do
 			sign_in user
 			visit users_path
 		end
@@ -139,6 +139,7 @@ describe "User Pages " do
 				# sign in an admin user
 				let(:admin) { FactoryGirl.create(:admin) }
 				before do
+					
 					sign_in admin
 					visit users_path
 				end

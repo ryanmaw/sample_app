@@ -10,10 +10,9 @@
 <div class = "row">
 	<div class = "col-md-6 col-md-offset-3">
 		<%= bootstrap_form_for(@user) do |f| %>
-		<%= f.text_field :name, hide_label: :true, placeholder: "Name" %>
-		<%= f.email_field :email, hide_label: :true, placeholder: "Email" %>
-		<%= f.password_field :password, hide_label: :true, placeholder: "Password"%>
-		<%= f.password_field :password_confirmation, hide_label: :true, placeholder: "Confirm Password" %>
+
+		<!-- f is passed to the form as a local variable  -->
+		<%= render 'fields', f: f %>
 		<%= f.submit "Save Changes" , class: "btn btn-large btn-primary"%>
 		<% end %>
 	</div>

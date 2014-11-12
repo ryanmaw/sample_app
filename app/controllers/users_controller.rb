@@ -3,9 +3,16 @@
   before_filter :correct_user,      only: [:edit, :update]
   before_filter :admin_user,        only: [:destroy]
 
+
   def new
-  	@user = User.new
+    if !signed_in?
+    	@user = User.new
+    else
+      redirect_to root_url
+    end
   end
+
+
   def create 
   	# @user = User.new(user_params)  
   	@user = User.new(user_params) 
@@ -57,7 +64,11 @@
 
 
   def user_params
-  	params.require(:user).permit( :name, :email, :password, :password_confirmation)
+  	params.require(:user).permit(* user_attributes)
+  end
+
+  def user_attributes
+    [:name, :email, :password, :password_confirmation]
   end
 
   # Create a before_filter
@@ -74,6 +85,13 @@
       redirect_to signin_url
     end
   end
+
+  # Signd in users should not be allowed to access create and new when already signed in
+
+
+
+
+
 
   def correct_user
     # get user id

@@ -50,6 +50,13 @@ describe "Authentication " do
 		describe "-> for non-signed in users " do
 			let(:user) { FactoryGirl.create(:user) }
 
+			describe "-> visiting the home page" do
+				before { visit root_url }
+
+				it { should_not have_link("Profile") }
+				it { should_not have_link("Settings") }
+
+			end
 
 			# To test for such “friendly forwarding”, we first visit the user edit page, which redirects to the signin page.
 			# We then enter valid signin information and click the “Sign in” button. 
@@ -133,6 +140,28 @@ describe "Authentication " do
 				specify { response.should redirect_to(root_url) }
 
 			end
+		end
+
+		describe "For signed in user " do
+			# test that signed in user are redirected to the root_url when they access create or new
+			let(:user) { FactoryGirl.create(:user) }
+			before { sign_in user }
+
+			# Trying to signup when already signed in
+			describe "Trying to access Users#New" do
+				before { get signup_path }
+				specify { response.should redirect_to(root_url) }
+			end
+
+			# Trying to signin while already signed in
+			describe "Trying to access Sessions#New" do
+				before { get signin_path }
+				specify { response.should redirect_to(root_url) }
+			end
+
+
+
+
 		end
 
 	end
