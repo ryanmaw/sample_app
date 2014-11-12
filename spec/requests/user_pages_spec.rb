@@ -105,24 +105,25 @@ describe "User Pages " do
 		# create three users
 		# sign in one
 		# visit page
-		let(:user) { FactoryGirl.create(:user) }
-
-		before do
-			sign_in user
-			visit users_path
-		end
 
 		# describe page
 		# should have correct title
 		# should have correct h1 
 		# should have a li tag for each user name
-		it { should have_title("All Users") }
-		it { should have_selector("h1", text: "All Users") }
+		before(:all) { 30.times { FactoryGirl.create(:user) } }
+		after(:all) { User.delete_all }
 
 		describe "pagination" do
 
-			before(:all) { 30.times { FactoryGirl.create(:user) } }
-			after(:all) { User.delete_all }
+			let(:user) { FactoryGirl.create(:user) }
+			before do
+				sign_in user
+				visit users_path
+			end
+
+			it { should have_title("All Users") }
+			it { should have_selector("h1", text: "All Users") }
+
 
 			it { should have_selector('div.pagination') }
 
@@ -132,31 +133,27 @@ describe "User Pages " do
 				end
 			end
 		end
-		describe "delete links" do
-			it { should_not have_link('delete') }
 
-			describe "for admin users " do
-				# sign in an admin user
-				let(:admin) { FactoryGirl.create(:admin) }
-				before do
-					
-					sign_in admin
-					visit users_path
-				end
-				it { should have_title("All Users") }
-				it { should have_link('delete', href: user_path(User.first)) }
-				it "should be able to delete another user" do
-					expect	{ click_link('delete') }.to change(User, :count).by(-1)
-				end
-				it { should_not have_link('delete', href: user_path(admin)) }
+		describe "For admin Users" do
+			describe "delete links" do
 
+					# sign in an admin user
+					let(:admin) { FactoryGirl.create(:admin) }
+					before do
+						sign_in admin
+						visit users_path
+					end
+
+					it { should have_title("All Users") }
+					it { should have_link('delete', href: user_path(User.first)) }
+					it "should be able to delete another user" do
+						expect	{ click_link('delete', href: user_path(User.first)  ) }.to change(User, :count).by(-1)
+					end
+					it { should_not have_link('delete', href: user_path(admin)) }
 
 			end
 		end
 	end
-
-
-
 end
 
 
