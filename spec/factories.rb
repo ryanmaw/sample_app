@@ -23,4 +23,9 @@
  			admin true
  		end
  	end
+ 	#  Add Association
+ 	factory :micropost do
+ 		content "Lorem ipsum"
+ 		user
+ 	end
  end

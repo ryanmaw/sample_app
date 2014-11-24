@@ -19,6 +19,8 @@ describe User do
 	it { should respond_to(:remember_token) }
     it { should respond_to(:authenticate) }
     it { should respond_to(:admin) }
+
+    # This just tests for an attr called microposts; not a very robust test
     it { should respond_to(:microposts) }
 
 	it { should be_valid }
@@ -138,7 +140,23 @@ describe User do
 		it { should be_admin }
 	end
 
+	describe "micropost associations" do
 
+		before { @user.save }
+
+		# let! bang forces created now, let waits to create until referenced
+
+		let!(:older_micropost) do
+			FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+		end
+		let!(:newer_micropost) do
+			FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+		end
+
+		it "should have the right microposts in the right order" do
+			@user.microposts.should == [newer_micropost, older_micropost]
+		end
+	end
 
 end
 
