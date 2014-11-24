@@ -9,6 +9,8 @@
     	@user = User.new
     else
       redirect_to root_url
+      @user = current_user
+      flash[:danger] = "You cannot access the signup page because you are already signed in. Current Username: #{@user.name}"
     end
   end
 

@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 	def new
 		if signed_in?
 		   redirect_to root_url
-		   flash[:danger] = 'Already logged-in'
+		   flash[:danger] = 'You can not access the signin page because you are already signed in.  Sign out to Signin as another user.'
 		else
 		end
 	end
