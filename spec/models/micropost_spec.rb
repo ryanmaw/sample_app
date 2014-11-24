@@ -1,5 +1,26 @@
 require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe Micropost, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Micropost do
+
+	let(:user){ FactoryGirl.create(:user) }
+
+	before { @micropost = user.microposts.build(content: "This is the content") }
+
+	subject { @micropost }
+
+	it { should respond_to(:content) }
+	it { should respond_to(:user_id) }
+	it { should respond_to(:user) }
+
+	# requires gem 'rspec-its'
+	its(:user) { should == user }
+
+	it { should be_valid }
+
+	describe "when user_id is not present" do
+		before { @micropost.user_id = nil }
+		it { should_not be_valid }
+	end
+
 end

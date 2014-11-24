@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 	# Validate that a User has a name
+	has_many :microposts
+
+
 	before_save { email.downcase! }
 	before_save :create_remember_token
  	has_secure_password

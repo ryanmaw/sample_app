@@ -17,6 +17,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 
 group :development, :test do
   gem 'rspec-rails', '3.0.1'
+  gem 'rspec-its'
   gem 'guard-rspec', '4.2.10'
   gem 'spring-commands-rspec'
   gem 'rb-fsevent', :require => false
