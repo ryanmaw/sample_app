@@ -23,4 +23,14 @@ describe Micropost do
 		it { should_not be_valid }
 	end
 
+	describe "With no content" do
+		before { @micropost.content = "" }
+		it { should_not be_valid }
+	end
+
+	describe "with content longer then 140 chars" do
+		before { @micropost.content = "a" * 141 }
+		it { should_not be_valid }		
+	end
+
 end

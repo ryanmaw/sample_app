@@ -1,2 +1,21 @@
 <% provide(:title, @user.name) %>
 <h1><%= @user.name %></h1>
+
+<div class="row">
+	
+	<aside>
+		
+
+	</aside>
+	<div class="col-md-8">
+		<% if @user.microposts.any?  %>
+			<h3>Microposts (<%= @user.microposts.count %>)</h3>
+			<ol class="microposts">
+				<%= render @microposts %>
+			</ol>
+
+			<!-- will_paginate assumes @user because we are in the users controller.  We have to speficy posts -->
+			<%= will_paginate @microposts %>
+			<% end %>
+	</div>
+</div>
