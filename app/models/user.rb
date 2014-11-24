@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	# Validate that a User has a name
-	has_many :microposts
+	has_many :microposts, dependent: :destroy 
 
 
 	before_save { email.downcase! }

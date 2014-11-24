@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'spec_helper'
+require 'pp'
 
 describe User do
 	before do
@@ -156,6 +157,16 @@ describe User do
 		it "should have the right microposts in the right order" do
 			@user.microposts.should == [newer_micropost, older_micropost]
 		end
+
+		it "should destroy associated microposts" do
+			# This differs greatly from the book because rails 4
+			# The association dependance arranges for the deletion. 
+
+			microposts = @user.microposts.dup
+			@user.destroy
+			microposts.should be_empty
+		end
+
 	end
 
 end
