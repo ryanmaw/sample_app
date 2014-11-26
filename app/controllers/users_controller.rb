@@ -74,27 +74,6 @@
     [:name, :email, :password, :password_confirmation]
   end
 
-  # Create a before_filter
-  # This allows the authentication to take place before
-
-  def signed_in_user 
-    # redirect_to signin_url, warning: "Please Sign In To Update Your Profile" unless signed_in?
-
-    # The code below == the code above.
-
-    unless signed_in?
-      store_location
-      flash[:warning] = "Please sign in."
-      redirect_to signin_url
-    end
-  end
-
-  # Signd in users should not be allowed to access create and new when already signed in
-
-
-
-
-
 
   def correct_user
     # get user id

@@ -11,10 +11,18 @@ module SessionsHelper
 
 	The cookie created using the session method are automatically encrypted. This is pretty damn secure.
 	If we use the cookie method we are vulnerable to "session hijacking"
-
-	
 =end
+	def signed_in_user 
+	  # redirect_to signin_url, warning: "Please Sign In To Update Your Profile" unless signed_in?
 
+	  # The code below == the code above.
+
+	  unless signed_in?
+	    store_location
+	    flash[:warning] = "Please sign in."
+	    redirect_to signin_url
+	  end
+	end
 	def sign_in(user)
 		cookies.permanent[:remember_token] = user.remember_token
 		self.current_user = user

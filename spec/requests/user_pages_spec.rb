@@ -164,7 +164,9 @@ describe "User Pages " do
 		before { visit user_path(user) }
 
 		it { should have_title(user.name) }
-		it { should have_selector('h1', text: user.name) }
+
+		#TODO this is hacky with the titleize. Find a way to verify the title is there by ignoring case
+		it { should have_selector('h1', text: user.name.titleize) }
 
 		describe "microposts" do
 			it { should have_content(m1.content) }
